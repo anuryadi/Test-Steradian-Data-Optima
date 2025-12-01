@@ -34,21 +34,23 @@ func main() {
 	soal3(paskal)
 }
 
+func printValue(idx, val, rowLen int) {
+	if idx == 0 || idx == rowLen-1 {
+		fmt.Printf("%d ", val)
+		return
+	}
+
+	if val%2 == 0 {
+		fmt.Printf(Green+"%d "+Reset, val)
+	} else {
+		fmt.Printf(Red+"%d "+Reset, val)
+	}
+}
+
 func soal1(paskal [][]int) {
 	for _, row := range paskal {
 		for a, b := range row {
-
-			// tidak perlu warna untuk angka 1
-			if a == 0 || a == len(row)-1 {
-				fmt.Printf("%d ", b)
-				continue
-			}
-
-			if b%2 == 0 {
-				fmt.Printf(Green+"%d "+Reset, b)
-			} else {
-				fmt.Printf(Red+"%d "+Reset, b)
-			}
+			printValue(a, b, len(row))
 		}
 
 		fmt.Println()
@@ -60,16 +62,7 @@ func soal2(paskal [][]int) {
 		sum := 0
 
 		for a, b := range row {
-			if a == 0 || a == len(row)-1 {
-				fmt.Printf("%d ", b)
-				continue
-			}
-
-			if b%2 == 0 {
-				fmt.Printf(Green+"%d "+Reset, b)
-			} else {
-				fmt.Printf(Red+"%d "+Reset, b)
-			}
+			printValue(a, b, len(row))
 
 			if a > 0 && a < len(row)-1 {
 				sum += b
@@ -90,16 +83,7 @@ func soal3(paskal [][]int) {
 	for i := len(paskal) - 1; i >= 0; i-- {
 		sum := 0
 		for a, b := range paskal[i] {
-			if a == 0 || a == len(paskal)-1 {
-				fmt.Printf("%d ", b)
-				continue
-			}
-
-			if b%2 == 0 {
-				fmt.Printf(Green+"%d "+Reset, b)
-			} else {
-				fmt.Printf(Red+"%d "+Reset, b)
-			}
+			printValue(a, b, len(paskal[i]))
 
 			if a > 0 && a < len(paskal[i])-1 {
 				sum += b
